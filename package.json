@@ -1,6 +1,6 @@
 {
   "name": "@neekojs/utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "neeko utils",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "ncp": "2"
   },
   "dependencies": {
+    "ali-oss": "6",
     "axios": "0",
     "qiniu": "7"
   }
