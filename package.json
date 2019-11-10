@@ -1,8 +1,8 @@
 {
   "name": "@neekojs/utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "neeko utils",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "compile": "ncp src lib && BABEL_ENV=common babel lib -d lib",
     "release": "npm run compile && npm publish --access public"
