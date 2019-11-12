@@ -15,10 +15,20 @@ export default class UploadInterface {
     }
 
     async uploadFile(localFile, cloudFile, options = {}) {
-        console.error('uploadFile must be rewrite');
+        console.error('uploadFile function must be rewrite');
     }
 
-    async uploadDir(dirPath, cdnPath) {
+    async uploadDir(dirPath, cdnPath = '') {
+        if (cdnPath && cdnPath.length > 0) {
+            if (cdnPath.startsWith('/')) {
+                cdnPath = cdnPath.slice(1);
+            }
+            if (cdnPath.length > 0) {
+                if (!cdnPath.endsWith('/')) {
+                    cdnPath = `${cdnPath}/`;
+                }
+            }
+        }
         const fileArr = fs.readdirSync(dirPath);
         for (let i = 0, l = fileArr.length; i < l; i++) {
             const filepath = join(dirPath, fileArr[i]);
