@@ -23,10 +23,8 @@ export default class UploadInterface {
             if (cdnPath.startsWith('/')) {
                 cdnPath = cdnPath.slice(1);
             }
-            if (cdnPath.length > 0) {
-                if (!cdnPath.endsWith('/')) {
-                    cdnPath = `${cdnPath}/`;
-                }
+            if (cdnPath.length > 0 && cdnPath.endsWith('/')) {
+                cdnPath = cdnPath.slice(0, cdnPath.length - 1);
             }
         }
         const fileArr = fs.readdirSync(dirPath);
@@ -34,9 +32,9 @@ export default class UploadInterface {
             const filepath = join(dirPath, fileArr[i]);
             const stat = fs.statSync(filepath);
             if (stat.isFile()) {
-                await this.uploadFile(filepath, `${cdnPath}${fileArr[i]}`);
+                await this.uploadFile(filepath, `${cdnPath}/${fileArr[i]}`);
             } else {
-                await this.uploadDir(filepath, `${cdnPath}${fileArr[i]}/`);
+                await this.uploadDir(filepath, `${cdnPath}/${fileArr[i]}/`);
             }
         }
     }
